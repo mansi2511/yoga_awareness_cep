@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Awareness App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #61dafb;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 140px);
+        }
+
+        /* Welcome Page Styles */
+        .welcome-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .welcome-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .welcome-form h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 12px;
+            background: #61dafb;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .start-btn:hover {
+            background: #21a1f1;
+            color: white;
+        }
+
+        /* Home Page Styles */
+        .home {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .hero {
+            background: linear-gradient(to right, #a8edea, #fed6e3);
+            padding: 50px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: #61dafb;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #21a1f1;
+            color: white;
+        }
+
+        .edit-btn {
+            background: #16a34a;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .edit-btn:hover {
+            background: #0d8b3a;
+        }
+
+        .why-yoga {
+            margin: 40px 0;
+        }
+
+        .why-yoga ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .why-yoga li {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .quote {
+            background: #f0f8ff;
+            padding: 20px;
+            border-left: 5px solid #61dafb;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+
+        /* Problem Page Styles */
+        .problem-page {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .problem-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 30px auto;
+        }
+
+        .problem-buttons button {
+            padding: 15px;
+            background: #61dafb;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .problem-buttons button:hover {
+            background: #21a1f1;
+            color: white;
+        }
+
+        /* Library Page Styles */
+        .library {
+            text-align: center;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background: #61dafb;
+            color: black;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .back-btn:hover {
+            background: #21a1f1;
+            color: white;
+        }
+
+        .poses {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .pose-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .pose-name {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .pose-benefit {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 315px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Daily Routine Page Styles */
+        .routine-page {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .routine-page h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .routine-items {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .routine-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .routine-item h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 560px;
+            margin-bottom: 15px;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 315px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Meditation Page Styles */
+        .meditation-page {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .meditation-page h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .breathing-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .breathing-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: all 0.5s ease;
+        }
+
+        .breathing-text {
+            font-size: 24px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .breathing-instruction {
+            margin: 15px 0;
+            color: #555;
+        }
+
+        .meditation-quote {
+            font-style: italic;
+            color: #666;
+            margin: 25px 0;
+            padding: 15px;
+            border-left: 4px solid #61dafb;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        /* Tracker Page Styles */
+        .tracker-page {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tracker-page h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .tracker-stats {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tracker-stat-card {
+            padding: 15px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .tracker-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tracker-section h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tracker-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .btn-primary {
+            padding: 10px 15px;
+            background: #16a34a;
+            color: white;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-primary:hover {
+            background: #0d8b3a;
+        }
+
+        .btn-danger {
+            padding: 10px 15px;
+            background: #dc2626;
+            color: white;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        .btn-secondary {
+            padding: 10px 15px;
+            background: #61dafb;
+            color: #000;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-secondary:hover {
+            background: #21a1f1;
+            color: white;
+        }
+
+        .custom-input {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            width: 100px;
+        }
+
+        .daily-records {
+            margin-top: 20px;
+        }
+
+        .record-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .record-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Profile Page Styles */
+        .profile-page {
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .profile-info h1 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #61dafb;
+            margin: 10px 0;
+        }
+
+        .profile-details {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .profile-details h2 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            color: #2c3e50;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 0 10px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .detail-value {
+            font-weight: 500;
+        }
+
+        .achievements {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .achievements h2 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            color: #2c3e50;
+        }
+
+        .badge {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            width: 120px;
+        }
+
+        .badge i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .badge.bronze i {
+            color: #cd7f32;
+        }
+
+        .badge.silver i {
+            color: #c0c0c0;
+        }
+
+        .badge.gold i {
+            color: #ffd700;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            margin-top: 40px;
+        }
+
+        /* Notification Settings */
+        .notification-info {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+            }
+            
+            .tracker-buttons {
+                flex-direction: column;
+            }
+            
+            .tracker-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tracker-stat-card {
+                width: 100%;
+            }
+            
+            .video-container iframe {
+                height: 250px;
+            }
+            
+            .breathing-circle {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-container iframe {
+                height: 200px;
+            }
+            
+            .hero {
+                padding: 30px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .welcome-form {
+                padding: 1.5rem;
+            }
+            
+            .breathing-circle {
+                width: 120px;
+                height: 120px;
+                font-size: 18px;
+            }
+            
+            .breathing-text {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar" style="display: none;">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="navigateTo('home')">
+                <i class="fas fa-spa"></i> Yoga Awareness
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link" onclick="navigateTo('home')">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#" class="nav-link" onclick="navigateTo('problem')">
+                    <i class="fas fa-heart"></i> Problems
+                </a>
+                <a href="#" class="nav-link" onclick="navigateTo('routine')">
+                    <i class="fas fa-calendar"></i> 21-Day Routine
+                </a>
+                <a href="#" class="nav-link" onclick="navigateTo('meditation')">
+                    <i class="fas fa-leaf"></i> Meditation
+                </a>
+                <a href="#" class="nav-link" onclick="navigateTo('tracker')">
+                    <i class="fas fa-chart-line"></i> Tracker
+                </a>
+                <a href="#" class="nav-link" onclick="navigateTo('profile')">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Welcome Page -->
+        <div id="welcome" class="page active">
+            <div class="welcome-container">
+                <div class="welcome-form">
+                    <h1><i class="fas fa-spa"></i> Welcome to Yoga Awareness</h1>
+                    <p style="text-align: center; margin-bottom: 20px; color: #555;">Let's get started with some basic information</p>
+                    <div class="form-group">
+                        <label for="username">Your Name</label>
+                        <input type="text" id="username" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Your Age</label>
+                        <input type="number" id="age" placeholder="Enter your age">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Your Phone Number (for notifications)</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="yoga-time">Preferred Yoga Practice Time</label>
+                        <select id="yoga-time">
+                            <option value="">Select a time</option>
+                            <option value="06:00">6:00 AM</option>
+                            <option value="07:00">7:00 AM</option>
+                            <option value="08:00">8:00 AM</option>
+                            <option value="17:00">5:00 PM</option>
+                            <option value="18:00">6:00 PM</option>
+                            <option value="19:00">7:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="yoga-start">When did you start practicing yoga?</label>
+                        <input type="date" id="yoga-start">
+                    </div>
+                    <button class="start-btn" onclick="startApp()">
+                        <i class="fas fa-play-circle"></i> Start Your Yoga Journey
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Page -->
+        <div id="home" class="page">
+            <div class="home">
+                <section class="hero">
+                    <h1>Welcome to Yoga Awareness</h1>
+                    <p>Stay healthy, stay peaceful with Yoga</p>
+                    <a href="#" class="btn" onclick="navigateTo('problem')">
+                        <i class="fas fa-book-open"></i> Explore Yoga Library
+                    </a>
+                    <button class="edit-btn" onclick="navigateTo('welcome')">
+                        <i class="fas fa-edit"></i> Edit Your Details
+                    </button>
+                </section>
+
+                <section class="why-yoga">
+                    <h2>Why Practice Yoga?</h2>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Improves flexibility & posture</li>
+                        <li><i class="fas fa-check-circle"></i> Boosts mental health & focus</li>
+                        <li><i class="fas fa-check-circle"></i> Relieves stress & anxiety</li>
+                        <li><i class="fas fa-check-circle"></i> Enhances strength and balance</li>
+                    </ul>
+                </section>
+
+                <section class="quote">
+                    <h3>Daily Motivation</h3>
+                    <p id="daily-quote">Yoga is the journey of the self, through the self, to the self.</p>
+                </section>
+
+                <div class="notification-info">
+                    <h3><i class="fas fa-bell"></i> Notification Settings</h3>
+                    <p>You will receive daily reminders at <strong id="notification-time">your selected time</strong></p>
+                    <p>Phone: <strong id="notification-phone">your phone number</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem Selection Page -->
+        <div id="problem" class="page">
+            <div class="problem-page">
+                <h1>Yoga for Your Daily Problems</h1>
+                <div class="problem-buttons">
+                    <button onclick="navigateToLibrary('Stress')">Stress</button>
+                    <button onclick="navigateToLibrary('Anxiety')">Anxiety Relief</button>
+                    <button onclick="navigateToLibrary('Back Pain')">Back Pain Relief</button>
+                    <button onclick="navigateToLibrary('Sleep Issues')">Sleep Issues</button>
+                    <button onclick="navigateToLibrary('Overweight')">Overweight</button>
+                    <button onclick="navigateToLibrary('Facial Aging')">Facial Aging</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Library Page -->
+        <div id="library" class="page">
+            <div class="library">
+                <a href="#" class="back-btn" onclick="navigateTo('problem')">
+                    <i class="fas fa-arrow-left"></i> Back to Problems
+                </a>
+                <h1 id="library-title">Yoga Library</h1>
+                <div class="poses" id="poses-container">
+                    <!-- Poses will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 21-Day Routine Page -->
+        <div id="routine" class="page">
+            <div class="routine-page">
+                <h1>21-Day Yoga Routine for Beginners</h1>
+                <p style="text-align: center; margin-bottom: 30px; color: #555;">Follow this structured program to build a consistent yoga practice</p>
+                
+                <div class="routine-items" id="routine-container">
+                    <!-- Routine items will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Meditation Page -->
+        <div id="meditation" class="page">
+            <div class="meditation-page">
+                <h1>Guided Breathing Meditation</h1>
+                <p class="meditation-quote">"Breathe properly with awareness to nourish your body and calm your mind."</p>
+                
+                <div class="breathing-container">
+                    <div class="breathing-circle" id="breathing-circle">
+                        Breathe
+                    </div>
+                    <div class="breathing-text" id="breathing-text">Ready to begin</div>
+                    <p class="breathing-instruction" id="breathing-instruction">Click start to begin your breathing exercise</p>
+                    
+                    <button class="btn-primary" id="start-breathing" onclick="startBreathing()">
+                        <i class="fas fa-play"></i> Start Breathing
+                    </button>
+                    <button class="btn-secondary" id="stop-breathing" onclick="stopBreathing()" style="display: none;">
+                        <i class="fas fa-stop"></i> Stop
+                    </button>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h3>Breathing Technique</h3>
+                    <p>Follow the circle animation: Inhale as it expands, exhale as it contracts.</p>
+                    <p>This simple practice can reduce stress, improve focus, and promote relaxation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tracker Page -->
+        <div id="tracker" class="page">
+            <div class="tracker-page">
+                <h1>Yoga Tracker</h1>
+                <p>Track your yoga practice and monitor your progress</p>
+
+                <div class="tracker-stats">
+                    <div class="tracker-stat-card">
+                        <div class="stat-label">Total minutes</div>
+                        <div class="stat-value" id="total-minutes">0 min</div>
+                    </div>
+
+                    <div class="tracker-stat-card">
+                        <div class="stat-label">Current streak</div>
+                        <div class="stat-value" id="streak-days">0 days</div>
+                    </div>
+
+                    <div class="tracker-stat-card">
+                        <div class="stat-label">Last practiced</div>
+                        <div id="last-practiced">Never</div>
+                    </div>
+                </div>
+
+                <div class="tracker-section">
+                    <h3>Quick Session Tracking</h3>
+                    <p>Manually add your practice time</p>
+                    <div class="tracker-buttons">
+                        <button class="btn-primary" onclick="addPractice(5)">
+                            <i class="fas fa-plus"></i> 5 min
+                        </button>
+                        <button class="btn-primary" onclick="addPractice(10)">
+                            <i class="fas fa-plus"></i> 10 min
+                        </button>
+                        <button class="btn-primary" onclick="addPractice(15)">
+                            <i class="fas fa-plus"></i> 15 min
+                        </button>
+                        <button class="btn-primary" onclick="addPractice(20)">
+                            <i class="fas fa-plus"></i> 20 min
+                        </button>
+                        <button class="btn-primary" onclick="addPractice(30)">
+                            <i class="fas fa-plus"></i> 30 min
+                        </button>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <input type="text" id="custom-mins" class="custom-input" placeholder="Mins" oninput="validateNumber(this)">
+                            <button class="btn-primary" onclick="addCustomPractice()">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tracker-section">
+                    <h3>Daily Records</h3>
+                    <div id="daily-records" class="daily-records">
+                        <p style="color: #666; text-align: center;">No records yet. Start practicing to see your progress here.</p>
+                    </div>
+                </div>
+
+                <div class="tracker-section">
+                    <h3>Manage Data</h3>
+                    <div class="tracker-buttons">
+                        <button class="btn-secondary" onclick="updateTrackerStats()">
+                            <i class="fas fa-sync"></i> Refresh Stats
+                        </button>
+                        <button class="btn-danger" onclick="resetAll()">
+                            <i class="fas fa-trash"></i> Reset All Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profile" class="page">
+            <div class="profile-page">
+                <div class="profile-header">
+                    <div class="profile-info">
+                        <h1 id="profile-name">Yoga Enthusiast</h1>
+                        <p>Dedicated to your wellness journey</p>
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Practice Time</div>
+                        <div class="stat-value">0 min</div>
+                        <div>Keep practicing!</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Current Streak</div>
+                        <div class="stat-value">0 days</div>
+                        <div>Start your journey today!</div>
+                    </div>
+                </div>
+
+                <div class="profile-details">
+                    <h2>Basic Information</h2>
+                    <div class="detail-item">
+                        <div class="detail-label">Name:</div>
+                        <div class="detail-value" id="detail-name">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Age:</div>
+                        <div class="detail-value" id="detail-age">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Phone:</div>
+                        <div class="detail-value" id="detail-phone">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Yoga Time:</div>
+                        <div class="detail-value" id="detail-yoga-time">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Yoga Start Date:</div>
+                        <div class="detail-value" id="detail-start-date">-</div>
+                    </div>
+                </div>
+
+                <div class="achievements">
+                    <h2>Achievements</h2>
+                    <p style="color: #777; margin-bottom: 20px;">Complete challenges to earn achievements</p>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                        <div class="badge">
+                            <i class="fas fa-heart"></i>
+                            <span>First Step</span>
+                            <small>Complete 1 session</small>
+                        </div>
+                        <div class="badge bronze">
+                            <i class="fas fa-award"></i>
+                            <span>Bronze Yogi</span>
+                            <small>7-day streak</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2023 Yoga Awareness App. All rights reserved.</p>
+        <p>Find your inner peace through yoga practice</p>
+    </footer>
+
+    <script>
+        // App state and data
+        const quotes = [
+            "Yoga is the journey of the self, through the self, to the self.",
+            "A calm mind brings inner strength and self-confidence.",
+            "Breathe deeply and let go of all that doesn't serve you.",
+            "Yoga adds years to your life and life to your years.",
+            "The body benefits from movement, and the mind benefits from stillness.",
+            "Yoga is not about touching your toes, it's about what you learn on the way down.",
+            "Inhale the future, exhale the past.",
+            "Yoga is the perfect opportunity to be curious about who you are.",
+            "The nature of yoga is to shine the light of awareness into the darkest corners of the body.",
+            "Yoga is the practice of quieting the mind."
+        ];
+
+        // Different videos for each problem area
+        const problemVideos = {
+            "Stress": [
+                { name: "Stress Relief Yoga", benefit: "Calms your mind and reduces stress", video: "https://www.youtube.com/embed/IGQgt3eHoRc" },
+                { name: "Yoga for Stress & Anxiety", benefit: "Gentle yoga practice to relieve stress", video: "https://www.youtube.com/embed/eUDTHzCw5YE" },
+                { name: "Quick Stress Relief", benefit: "Short practice for immediate stress relief", video: "https://www.youtube.com/embed/gIOdJ6ybYIM" }
+            ],
+            "Anxiety": [
+                { name: "Yoga for Anxiety Relief", benefit: "Calming practice to reduce anxiety", video: "https://www.youtube.com/embed/7cqzSNgNo1M" }
+            ],
+            "Back Pain": [
+                { name: "Yoga for Back Pain Relief", benefit: "Gentle exercises to relieve back pain", video: "https://www.youtube.com/embed/ncgz1z7-qx4" }
+            ],
+            "Sleep Issues": [
+                { name: "Yoga for Better Sleep", benefit: "Relaxing practice to improve sleep quality", video: "https://www.youtube.com/embed/wDykOfImzkM" }
+            ],
+            "Overweight": [
+                { name: "Yoga for Weight Management", benefit: "Practice to support healthy weight management", video: "https://www.youtube.com/embed/7QQH5pvvB-o" }
+            ],
+            "Facial Aging": [
+                { name: "Yoga for Facial Aging", benefit: "Exercises to help reduce signs of facial aging", video: "https://www.youtube.com/embed/nuXZEgC_p9I" }
+            ]
+        };
+
+        // 21-Day Yoga Routine playlist videos
+        const twentyOneDayRoutine = [
+            { name: "Day 1: Yoga For Beginners", video: "https://www.youtube.com/embed/FdyhENXyIQ4" },
+            { name: "Day 2: 15 Yoga For Strong Legs", video: "https://www.youtube.com/embed/-u0s-hkW6us" },
+            { name: "Day 3: Yoga For Toning Arms", video: "https://www.youtube.com/embed/S9-00Cs7cuI" },
+            { name: "Day 4: Yoga For Back Pain Relief", video: "https://www.youtube.com/embed/ncgz1z7-qx4" },
+            { name: "Day 5: Full Body Yoga Flow", video: "https://www.youtube.com/embed/FyFUowFFYC4" },
+            { name: "Day 6: Flat Stomach Yoga", video: "https://www.youtube.com/embed/lPyrSLVP8bg" },
+            { name: "Day 7: Gentle Yoga Flow", video: "https://www.youtube.com/embed/4gk4AtdMmoQ" },
+            { name: "Day 8: Deep Healing Yoga: Yoga That Feels Like Therapy", video: "https://www.youtube.com/embed/hwTFrOBt5r4" },
+            { name: "Day 9: Yoga For Stress Relief", video: "https://www.youtube.com/embed/IGQgt3eHoRc" },
+            { name: "Day 10: Beginner Yoga To Build Strength", video: "https://www.youtube.com/embed/uIdP4ctzKTk" },
+            { name: "Day 11: Yoga To Improve Flexibility", video: "https://www.youtube.com/embed/CgzVARJ19gE" },
+            { name: "Day 12: Meditation To Release Emotions", video: "https://www.youtube.com/embed/KRm-Byqt9z4" },
+            { name: "Day 13: Deep Stretch Yoga", video: "https://www.youtube.com/embed/pTbGTMo_XRQ" },
+            { name: "Day 14: Heart Opening Yoga", video: "https://www.youtube.com/embed/PYXk8F6r_7s" },
+            { name: "Day 15: Digestion Yoga: Detox and Reset Flow", video: "https://www.youtube.com/embed/zPrAjnxWhhE" },
+            { name: "Day 16: Yoga For Relaxation And Peace Of Mind", video: "https://www.youtube.com/embed/eUDTHzCw5YE" },
+            { name: "Day 17: Yoga For Improving Concentration", video: "https://www.youtube.com/embed/L76iI8r1XZA" },
+            { name: "Day 18: Power Yoga For Beginners", video: "https://www.youtube.com/embed/-nOtSOhZ7AA" },
+            { name: "Day 19: Yoga For Reproductive Health", video: "https://www.youtube.com/embed/KwQPNNr82RE" },
+            { name: "Day 20: Full Body Vinyasa Flow", video: "https://www.youtube.com/embed/Wix86Uw0cWc" },
+            { name: "Day 21: Daily Practice Yoga: Yoga For Weight Loss", video: "https://www.youtube.com/embed/AvEkNDRS64E" }
+        ];
+
+        // Breathing animation variables
+        let breathingInterval;
+        let isBreathingActive = false;
+        let breathePhase = 0; // 0 = inhale, 1 = hold, 2 = exhale, 3 = hold
+
+        // Start the app with user info
+        function startApp() {
+            const username = document.getElementById('username').value;
+            const age = document.getElementById('age').value;
+            const phone = document.getElementById('phone').value;
+            const yogaTime = document.getElementById('yoga-time').value;
+            const yogaStart = document.getElementById('yoga-start').value;
+            
+            if (username && age) {
+                // Save user info
+                localStorage.setItem('yoga_username', username);
+                localStorage.setItem('yoga_age', age);
+                localStorage.setItem('yoga_phone', phone);
+                localStorage.setItem('yoga_time', yogaTime);
+                localStorage.setItem('yoga_start_date', yogaStart || new Date().toISOString().split('T')[0]);
+                
+                // Update profile
+                updateProfile();
+                
+                // Show the main app
+                document.getElementById('navbar').style.display = 'block';
+                navigateTo('home');
+                
+                // Set up daily quote rotation
+                setupDailyQuotes();
+            } else {
+                alert('Please enter at least your name and age to continue');
+            }
+        }
+
+        // Set up daily quote rotation
+        function setupDailyQuotes() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            const quoteIndex = dayOfYear % quotes.length;
+            
+            document.getElementById('daily-quote').textContent = quotes[quoteIndex];
+        }
+
+        // Update profile information
+        function updateProfile() {
+            const username = localStorage.getItem('yoga_username') || 'Yoga Enthusiast';
+            const age = localStorage.getItem('yoga_age') || '';
+            const phone = localStorage.getItem('yoga_phone') || '';
+            const yogaTime = localStorage.getItem('yoga_time') || '';
+            const startDate = localStorage.getItem('yoga_start_date') || '';
+            
+            // Format date for display
+            let formattedDate = '';
+            if (startDate) {
+                const dateObj = new Date(startDate);
+                formattedDate = dateObj.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+            }
+            
+            // Format time for display
+            let formattedTime = '';
+            if (yogaTime) {
+                const [hours, minutes] = yogaTime.split(':');
+                const hour = parseInt(hours);
+                const ampm = hour >= 12 ? 'PM' : 'AM';
+                const displayHour = hour % 12 || 12;
+                formattedTime = `${displayHour}:${minutes} ${ampm}`;
+            }
+            
+            // Update profile page
+            document.getElementById('profile-name').textContent = username;
+            document.getElementById('detail-name').textContent = username;
+            document.getElementById('detail-age').textContent = age ? `${age} years` : 'Not specified';
+            document.getElementById('detail-phone').textContent = phone || 'Not provided';
+            document.getElementById('detail-yoga-time').textContent = formattedTime || 'Not set';
+            document.getElementById('detail-start-date').textContent = formattedDate;
+            
+            // Update notification info on home page
+            document.getElementById('notification-phone').textContent = phone || 'Not provided';
+            document.getElementById('notification-time').textContent = formattedTime || 'Not set';
+            
+            // Update tracker stats if they exist
+            const totalMinutes = parseInt(localStorage.getItem('yoga_total_minutes')) || 0;
+            const streakDays = parseInt(localStorage.getItem('yoga_streak_days')) || 0;
+            
+            document.querySelectorAll('.profile-stats .stat-value')[0].textContent = `${totalMinutes} min`;
+            document.querySelectorAll('.profile-stats .stat-value')[1].textContent = `${streakDays} days`;
+        }
+
+        // Navigation functions
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Special case for home page - show random quote
+            if (pageId === 'home') {
+                setupDailyQuotes();
+            }
+            
+            // Special case for tracker - update stats
+            if (pageId === 'tracker') {
+                updateTrackerStats();
+            }
+            
+            // Special case for profile - update info
+            if (pageId === 'profile') {
+                updateProfile();
+            }
+            
+            // Special case for routine page - load routine videos
+            if (pageId === 'routine') {
+                loadRoutineVideos();
+            }
+            
+            // Special case for meditation page - stop breathing if active
+            if (pageId !== 'meditation' && isBreathingActive) {
+                stopBreathing();
+            }
+            
+            // Special case for welcome page - prefill data if available
+            if (pageId === 'welcome') {
+                const username = localStorage.getItem('yoga_username');
+                const age = localStorage.getItem('yoga_age');
+                const phone = localStorage.getItem('yoga_phone');
+                const yogaTime = localStorage.getItem('yoga_time');
+                const startDate = localStorage.getItem('yoga_start_date');
+                
+                if (username) document.getElementById('username').value = username;
+                if (age) document.getElementById('age').value = age;
+                if (phone) document.getElementById('phone').value = phone;
+                if (yogaTime) document.getElementById('yoga-time').value = yogaTime;
+                if (startDate) document.getElementById('yoga-start').value = startDate;
+            }
+        }
+
+        function navigateToLibrary(problem) {
+            navigateTo('library');
+            document.getElementById('library-title').textContent = `Yoga for ${problem}`;
+            
+            const filteredPoses = problemVideos[problem] || [];
+            const posesContainer = document.getElementById('poses-container');
+            posesContainer.innerHTML = '';
+            
+            if (filteredPoses.length === 0) {
+                posesContainer.innerHTML = '<p>No videos available for this category.</p>';
+                return;
+            }
+            
+            filteredPoses.forEach(pose => {
+                const poseCard = document.createElement('div');
+                poseCard.className = 'pose-card';
+                poseCard.innerHTML = `
+                    <h2 class="pose-name">${pose.name}</h2>
+                    <p class="pose-benefit">${pose.benefit}</p>
+                    <div class="video-container">
+                        <iframe
+                            width="560"
+                            height="315"
+                            src="${pose.video}"
+                            title="${pose.name}"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                `;
+                posesContainer.appendChild(poseCard);
+            });
+        }
+
+        // Load 21-day routine videos
+        function loadRoutineVideos() {
+            const routineContainer = document.getElementById('routine-container');
+            routineContainer.innerHTML = '';
+            
+            twentyOneDayRoutine.forEach((day, index) => {
+                const routineItem = document.createElement('div');
+                routineItem.className = 'routine-item';
+                routineItem.innerHTML = `
+                    <h3>${day.name}</h3>
+                    <div class="video-container">
+                        <iframe
+                            width="560"
+                            height="315"
+                            src="${day.video}"
+                            title="${day.name}"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                `;
+                routineContainer.appendChild(routineItem);
+            });
+        }
+
+        // Breathing animation functions
+        function startBreathing() {
+            isBreathingActive = true;
+            breathePhase = 0;
+            
+            document.getElementById('start-breathing').style.display = 'none';
+            document.getElementById('stop-breathing').style.display = 'inline-block';
+            
+            breathingInterval = setInterval(updateBreathing, 4000); // 4-second cycles
+            updateBreathing(); // Start immediately
+        }
+
+        function stopBreathing() {
+            isBreathingActive = false;
+            clearInterval(breathingInterval);
+            
+            document.getElementById('start-breathing').style.display = 'inline-block';
+            document.getElementById('stop-breathing').style.display = 'none';
+            
+            const circle = document.getElementById('breathing-circle');
+            const text = document.getElementById('breathing-text');
+            const instruction = document.getElementById('breathing-instruction');
+            
+            circle.style.transform = 'scale(1)';
+            circle.style.backgroundColor = '#a8edea';
+            circle.textContent = 'Breathe';
+            text.textContent = 'Ready to begin';
+            instruction.textContent = 'Click start to begin your breathing exercise';
+        }
+
+        function updateBreathing() {
+            if (!isBreathingActive) return;
+            
+            const circle = document.getElementById('breathing-circle');
+            const text = document.getElementById('breathing-text');
+            const instruction = document.getElementById('breathing-instruction');
+            
+            switch(breathePhase) {
+                case 0: // Inhale
+                    circle.style.transform = 'scale(1.5)';
+                    circle.style.backgroundColor = '#a8edea';
+                    circle.textContent = 'Breathe In';
+                    text.textContent = 'Inhale deeply...';
+                    instruction.textContent = 'Fill your lungs completely';
+                    break;
+                case 1: // Hold after inhale
+                    circle.textContent = 'Hold';
+                    text.textContent = 'Hold your breath...';
+                    instruction.textContent = 'Retain the breath for a moment';
+                    break;
+                case 2: // Exhale
+                    circle.style.transform = 'scale(1)';
+                    circle.style.backgroundColor = '#fed6e3';
+                    circle.textContent = 'Breathe Out';
+                    text.textContent = 'Exhale slowly...';
+                    instruction.textContent = 'Release all the air from your lungs';
+                    break;
+                case 3: // Hold after exhale
+                    circle.textContent = 'Hold';
+                    text.textContent = 'Hold empty...';
+                    instruction.textContent = 'Pause before the next breath';
+                    break;
+            }
+            
+            breathePhase = (breathePhase + 1) % 4;
+        }
+
+        // Tracker functionality
+        const STORAGE_KEYS = {
+            minutes: "yoga_total_minutes",
+            streak: "yoga_streak_days",
+            last: "yoga_last_practice",
+            lastEntry: "yoga_last_entry",
+            records: "yoga_daily_records"
+        };
+
+        function normalizeDate(d) {
+            const x = new Date(d);
+            return new Date(x.getFullYear(), x.getMonth(), x.getDate());
+        }
+
+        function formatDateTime(iso) {
+            if (!iso) return "Never";
+            const d = new Date(iso);
+            return d.toLocaleDateString() + " " + d.toLocaleTimeString();
+        }
+
+        function updateTrackerStats() {
+            const totalMinutes = parseInt(localStorage.getItem(STORAGE_KEYS.minutes)) || 0;
+            const streakDays = parseInt(localStorage.getItem(STORAGE_KEYS.streak)) || 0;
+            const lastPractice = localStorage.getItem(STORAGE_KEYS.last);
+            const lastEntry = localStorage.getItem(STORAGE_KEYS.lastEntry);
+            const records = JSON.parse(localStorage.getItem(STORAGE_KEYS.records) || "[]");
+            
+            document.getElementById('total-minutes').textContent = `${totalMinutes} min`;
+            document.getElementById('streak-days').textContent = `${streakDays} day${streakDays === 1 ? '' : 's'}`;
+            document.getElementById('last-practiced').textContent = formatDateTime(lastPractice);
+            
+            const lastActionDiv = document.getElementById('last-action');
+            if (lastEntry) {
+                const entry = JSON.parse(lastEntry);
+                lastActionDiv.innerHTML = `
+                    <div style="padding: 12px; border-radius: 8px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.04)">
+                        <div>Added: <b>${entry.minutes} minutes</b></div>
+                        <div style="font-size: 12px; color: #666">${formatDateTime(entry.timestamp)}</div>
+                        <div style="margin-top: 10px; display: flex; gap: 8px;">
+                            <button class="btn-danger-light" onclick="undoLast()">Undo last</button>
+                            <button class="btn-danger" onclick="resetAll()">Reset All Data</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                lastActionDiv.innerHTML = '<div style="color: #666">No recent actions. Click a button above to add practice minutes.</div>';
+            }
+            
+            // Update daily records
+            const dailyRecordsDiv = document.getElementById('daily-records');
+            if (records.length > 0) {
+                dailyRecordsDiv.innerHTML = '';
+                records.slice().reverse().forEach(record => {
+                    const recordItem = document.createElement('div');
+                    recordItem.className = 'record-item';
+                    recordItem.innerHTML = `
+                        <div>${formatDateTime(record.timestamp)}</div>
+                        <div><b>${record.minutes} minutes</b></div>
+                    `;
+                    dailyRecordsDiv.appendChild(recordItem);
+                });
+            } else {
+                dailyRecordsDiv.innerHTML = '<p style="color: #666; text-align: center;">No records yet. Start practicing to see your progress here.</p>';
+            }
+        }
+
+        function addPractice(minutesToAdd) {
+            minutesToAdd = Number(minutesToAdd);
+            if (!minutesToAdd || minutesToAdd <= 0) return;
+
+            const now = new Date();
+            const today = normalizeDate(now);
+            
+            const savedMinutes = parseInt(localStorage.getItem(STORAGE_KEYS.minutes)) || 0;
+            const savedStreak = parseInt(localStorage.getItem(STORAGE_KEYS.streak)) || 0;
+            const savedLast = localStorage.getItem(STORAGE_KEYS.last);
+            const records = JSON.parse(localStorage.getItem(STORAGE_KEYS.records) || "[]");
+            
+            const last = savedLast ? normalizeDate(new Date(savedLast)) : null;
+            
+            let newStreak = savedStreak;
+            if (!last) {
+                newStreak = 1;
+            } else if (last.getTime() === today.getTime()) {
+                newStreak = savedStreak;
+            } else {
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+                if (last.getTime() === yesterday.getTime()) {
+                    newStreak = savedStreak + 1;
+                } else {
+                    newStreak = 1;
+                }
+            }
+
+            const newTotal = savedMinutes + minutesToAdd;
+            const entry = { minutes: minutesToAdd, timestamp: now.toISOString() };
+            
+            // Add to records
+            records.push(entry);
+
+            localStorage.setItem(STORAGE_KEYS.minutes, String(newTotal));
+            localStorage.setItem(STORAGE_KEYS.streak, String(newStreak));
+            localStorage.setItem(STORAGE_KEYS.last, now.toISOString());
+            localStorage.setItem(STORAGE_KEYS.lastEntry, JSON.stringify(entry));
+            localStorage.setItem(STORAGE_KEYS.records, JSON.stringify(records));
+            
+            updateTrackerStats();
+            updateProfile();
+        }
+
+        function addCustomPractice() {
+            const customMins = document.getElementById('custom-mins').value;
+            if (customMins && !isNaN(customMins) && parseInt(customMins) > 0) {
+                addPractice(parseInt(customMins));
+                document.getElementById('custom-mins').value = '';
+            }
+        }
+
+        function validateNumber(input) {
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+
+        function undoLast() {
+            const lastEntry = localStorage.getItem(STORAGE_KEYS.lastEntry);
+            const records = JSON.parse(localStorage.getItem(STORAGE_KEYS.records) || "[]");
+            
+            if (!lastEntry || records.length === 0) return;
+            
+            const entry = JSON.parse(lastEntry);
+            const savedMinutes = parseInt(localStorage.getItem(STORAGE_KEYS.minutes)) || 0;
+            const newTotal = Math.max(0, savedMinutes - Number(entry.minutes));
+            
+            // Remove the last record
+            records.pop();
+            
+            localStorage.setItem(STORAGE_KEYS.minutes, String(newTotal));
+            localStorage.removeItem(STORAGE_KEYS.lastEntry);
+            localStorage.setItem(STORAGE_KEYS.records, JSON.stringify(records));
+            
+            updateTrackerStats();
+            updateProfile();
+        }
+
+        function resetAll() {
+            if (!confirm("Are you sure you want to reset all tracker data?")) return;
+            
+            localStorage.removeItem(STORAGE_KEYS.minutes);
+            localStorage.removeItem(STORAGE_KEYS.streak);
+            localStorage.removeItem(STORAGE_KEYS.last);
+            localStorage.removeItem(STORAGE_KEYS.lastEntry);
+            localStorage.removeItem(STORAGE_KEYS.records);
+            
+            updateTrackerStats();
+            updateProfile();
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user has already provided info
+            const username = localStorage.getItem('yoga_username');
+            if (username) {
+                document.getElementById('navbar').style.display = 'block';
+                navigateTo('home');
+                updateProfile();
+                setupDailyQuotes();
+            } else {
+                document.getElementById('navbar').style.display = 'none';
+                document.getElementById('welcome').classList.add('active');
+            }
+            
+            // Initialize tracker stats if they don't exist
+            if (localStorage.getItem(STORAGE_KEYS.minutes) === null) {
+                localStorage.setItem(STORAGE_KEYS.minutes, '0');
+                localStorage.setItem(STORAGE_KEYS.streak, '0');
+                localStorage.setItem(STORAGE_KEYS.records, JSON.stringify([]));
+            }
+        });
+    </script>
+</body>
+</html>
